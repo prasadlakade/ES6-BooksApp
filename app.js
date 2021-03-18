@@ -22,7 +22,6 @@ class UI{
             mNode.innerText = 'No Data found';
             bookNode.appendChild(mNode);
         }else{
-        
             books.forEach((book) => {
                 UI.addBookToList(book);
             })
@@ -136,7 +135,11 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
         //console.log(book);
 
         //add book to list 
-        document.querySelector('#booklist p').remove();
+        const isNoDataDiv = document.querySelector('#booklist p');
+        if(isNoDataDiv){
+            document.querySelector('#booklist p').remove();
+        }
+        
         UI.addBookToList(book);
 
         //add book to localstore
