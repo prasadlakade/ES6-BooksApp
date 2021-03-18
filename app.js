@@ -13,10 +13,22 @@ class UI{
        
 
         const books = Store.getBooks();
+        console.log(books);
 
-        books.forEach((book) => {
-            UI.addBookToList(book);
-        })
+        if(books == ''){
+            const bookNode = document.querySelector('#booklist');
+            const mNode = document.createElement('p');
+            mNode.classList = 'mb-3 mt-3 nodata-div'
+            mNode.innerText = 'No Data found';
+            bookNode.appendChild(mNode);
+        }else{
+        
+            books.forEach((book) => {
+                UI.addBookToList(book);
+            })
+        }
+
+        
     }
 
     static addBookToList(book) {
@@ -58,7 +70,6 @@ class UI{
         const formDiv = document.querySelector('#book-form');
         msgContainer.insertBefore(alertdiv, formDiv);
     }
-
 
     static clearFields(){
         document.querySelector('#booktitle').value = '';
@@ -125,6 +136,7 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
         //console.log(book);
 
         //add book to list 
+        document.querySelector('#booklist p').remove();
         UI.addBookToList(book);
 
         //add book to localstore
